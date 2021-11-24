@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form-group">
+	<div class="container shadow p-5">
+		<div class="row">
+			<h1 class="display-3">Edit student information</h1>
+			<div class="col-sm-7">
+				<form action="" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					{% if info.profile_pic %}
+					<img src="{{info.studentphotos.profile_pic.url}}"class="" style="width:10%"> 
+					{% endif %}
+					<label for="" class="form-label">profile_pic:</label>
+					<input type="file" name="profile_pic" class="form-control">
+
+					<label for="" class="form-label">name:</label>
+					<input type="text" name="title" value="{{info.name}}" class="form-control">
+
+
+					<label for="" class="form-label">email:</label>
+					<input type="text" name="name" value="{{info.email}}" class="form-control">
+
+					
+					<label for="" class="form-label">contact:</label>
+					<input type="text" name="blog" value="{{info.contact}}" class="form-control">
+
+					<label for="" class="form-label">address:</label>
+					<input type="text" name="title" value="{{info.address}}" class="form-control">
+
+					<label for="" class="form-label">bio:</label>
+					<input type="text" name="title" value="{{info.bio}}" class="form-control">
+
+					<button type="submit" class="btn btn-success"><a href="{% url 'student_details' %}"><i class="fas fa-pen-alt"></i>update</button></a>
+
+
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

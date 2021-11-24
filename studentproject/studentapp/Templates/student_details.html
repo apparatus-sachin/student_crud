@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-2">
+		
+<a href="{% url 'student_add' %}" class="btn btn-secondary btn-block btn-lg">
+<i class="fas fa-backward" style="font-size:30px;color:deepskyblue;"></i>Back to Add
+</a>
+</div>
+</div>
+<div class="container shadow p-5">
+<table class="table table-striped">
+	<p class="display-4">All Details is here</p>
+	<thead>
+		<tr>
+			<th scope="col">profile_pic</th>
+			<th scope="col">name</th>
+			<th scope="col">email</th>
+			<th scope="col">contact</th>
+			<th scope="col">address</th>
+			<th scope="col">bio</th>
+			<th scope="col">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for studentinfo in info %}
+		<tr class="table-info">
+			{% if studentinfo.profile_pic %}
+		<td>
+			<img src="{{studentinfo.profile_pic.url}}" alt="" class="" width="50" height="50">
+		</td>
+		{% else %}
+		<td>
+			<img src="{{studentinfo.studentphotos.url}}"  alt="" class="" width="40" height="40" >
+		</td>
+		{% endif %}
+
+		<td>{{studentinfo.name}}</td>
+		<td>{{studentinfo.email}}</td>
+		<td>{{studentinfo.contact}}</td>
+		<td>{{studentinfo.address}}</td>
+		<td>{{studentinfo.bio}}</td>
+		<td>
+			<a href="{% url 'student_edit' studentinfo.id %}"class="btn text-secondary px-0"><i class="fas fa-user-edit" style="font-size:20px;color:dodgerblue;"></i></a>
+			
+			<form action="{% url 'student_trash' studentinfo.id %}" method="post" class="d-inline">{% csrf_token %}<button type="submit" class="btn"><i class="fas fa-trash-alt fa-lg text-danger float-right"></i></button></form>
+		</td>
+	</tr>
+{% endfor %}
+
+	</tbody>
+</table>
+</div>
+
+
+
+
+
+
+{% endblock content %}

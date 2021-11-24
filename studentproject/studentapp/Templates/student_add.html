@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+
+
+<div class="container shadow p-5">
+	<div class="row">
+			<center>
+		<h1 class="display-4">Adding Details Of Student</h1></center><br>
+
+		<div class="container shadow p-3">
+			<div class="jumbotron">
+				<div class="col-sm-8">
+					<form method="post" action="" enctype="multipart/form-data">
+					{% csrf_token %}
+					{{ form.as_p }}
+					<button type="submit" class="btn"><i class="fa fa-check-square-o">ADD</i></button>
+						<a href="{% url 'student_details' %}"><button type="button" class="btn btn-info">show all Info</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</center>
+{% endblock content %}
